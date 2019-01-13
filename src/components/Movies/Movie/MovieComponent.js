@@ -1,14 +1,18 @@
-import React, { Component } from 'react'
-import './Movie.css';
+import React from 'react'
+import './Movie.scss';
 
-class MovieComponent extends Component {
-  render() {
-    return (
-      <div className='movie'>
-        <p> Movie Component! </p>
+// Define Movie as a Functional component
+const MovieComponent = (props) => {
+  const posterPath = "http://image.tmdb.org/t/p/w300/" + props.movie.poster_path;
+  return (
+    <div className="movie">
+      <img src={posterPath} alt="poster-path" />
+      <div className="container" >
+        <h4> <b> { props.movie.title } </b> </h4>
+        <p> { props.movie.vote_average } </p>  
       </div>
-    )
-  }
+    </div>
+  );
 }
 
 export default MovieComponent;

@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import './Movies.css';
+
+import MovieComponent from './Movie/MovieComponent'
+import './Movies.scss';
 
 class MoviesComponent extends Component {
     constructor(props) {
         super(props);
 
-        // Define the zipcode property into the component state
+        // Define state properties
         this.state = {
             movies: []
         };
@@ -21,16 +23,17 @@ class MoviesComponent extends Component {
             });
     }
   
-  render() {
-      const { movies } = this.state;
-    return (
-      <div className='movies'>
-        {movies.map(movie =>
-            <p>{movie.title} </p>
-        )}
-      </div>
-    )
-  }
+    render() {
+        const { movies } = this.state;
+
+        return (
+            <div className="movies">
+                {movies.map( movie =>
+                    <MovieComponent movie={movie} key={movie.id}/>
+                )}
+            </div>
+        )
+    }
 }
 
 export default MoviesComponent;
