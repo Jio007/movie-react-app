@@ -4,6 +4,12 @@
     transition: 0.3s;
     display: inline-block;
     margin: 10px;
+    
+    img {
+        width: 400px;
+        height: 600px;
+    }
+    
 
     /* On mouse-over, add a deeper shadow */
     .card:hover {
@@ -13,5 +19,7 @@
     /* Add some padding inside the card container */
     .container {
         padding: 2px 16px;
+        width: 400px;
+        height: 105px;
     }
 }

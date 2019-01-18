@@ -14,6 +14,17 @@ class MoviesComponent extends Component {
         };
     }
 
+    componentDidUpdate(){
+        if(this.props.name){
+            axios.get('https://api.themoviedb.org/3/search/movie?api_key=089dde2396217b62fb377d77459dbfa9&query='+ this.props.name)
+            .then(data => {
+                this.setState({
+                    movies: data.data.results
+                });
+            });
+        }
+    }
+
     componentDidMount() {
         axios.get('https://api.themoviedb.org/3/discover/movie?api_key=089dde2396217b62fb377d77459dbfa9')
             .then(data => {
