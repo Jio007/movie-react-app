@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import MoviesComponent from './components/Movies/MoviesComponent';
 import Header from './containers/Header/Header'
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+import reducer from './store/reducer';
 
 class App extends Component {
   constructor(props){
@@ -16,11 +19,12 @@ class App extends Component {
 
   render() {
     const {search} = this.state;
+    const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
     return (
-      <div className="App">
-        <Header searchMovie={this.onSearchMovie} />
-        <MoviesComponent name={search}/>
-      </div>
+      <Provider store={store}>
+          <Header searchMovie={this.onSearchMovie} />
+          <MoviesComponent name={search}/>
+      </Provider>
     );
   }
 }

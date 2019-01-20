@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import MovieComponent from './Movie/MovieComponent'
 import './Movies.scss';
+ import {connect} from 'react-redux'
 
 class MoviesComponent extends Component {
     constructor(props) {
@@ -15,13 +16,20 @@ class MoviesComponent extends Component {
     }
 
     componentDidUpdate(){
-        if(this.props.name){
-            axios.get('https://api.themoviedb.org/3/search/movie?api_key=089dde2396217b62fb377d77459dbfa9&query='+ this.props.name)
+        if(this.props.srch && this.props.srch !== ''){
+            axios.get('https://api.themoviedb.org/3/search/movie?api_key=089dde2396217b62fb377d77459dbfa9&query='+ this.props.srch)
             .then(data => {
                 this.setState({
                     movies: data.data.results
                 });
             });
+        } else {
+            axios.get('https://api.themoviedb.org/3/discover/movie?api_key=089dde2396217b62fb377d77459dbfa9')
+            .then(data => {
+                this.setState({
+                    movies: data.data.results
+                });
+            });    
         }
     }
 
@@ -47,4 +55,10 @@ class MoviesComponent extends Component {
     }
 }
 
-export default MoviesComponent;
+const mapStateToProps = state => {
+    return {
+        srch: state.search
+    }
+};
+
+export default connect(mapStateToProps)(MoviesComponent);
