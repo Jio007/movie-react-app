@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import MoviesComponent from './components/Movies/MoviesComponent';
+import Home from './components/Home/Home';
 import Header from './containers/Header/Header'
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
@@ -15,7 +15,7 @@ class App extends Component {
     }
   }
 
-  onSearchMovie = search => this.setState( {search} )
+  onSearchMovie = search => this.setState( {search} );
 
   render() {
     const {search} = this.state;
@@ -23,7 +23,7 @@ class App extends Component {
     return (
       <Provider store={store}>
           <Header searchMovie={this.onSearchMovie} />
-          <MoviesComponent name={search}/>
+          <Home name={search}/>
       </Provider>
     );
   }

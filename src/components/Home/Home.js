@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 
-import MovieComponent from './Movie/MovieComponent'
-import './Movies.scss';
+import Card from '../Card/Card'
+import './Home.scss';
  import {connect} from 'react-redux'
 
-class MoviesComponent extends Component {
+class Home extends Component {
     constructor(props) {
         super(props);
 
@@ -46,9 +46,9 @@ class MoviesComponent extends Component {
         const { movies } = this.state;
 
         return (
-            <div className="movies">
+            <div className="home">
                 {movies.map( movie =>
-                    <MovieComponent movie={movie} key={movie.id}/>
+                    <Card entity={movie} key={movie.id}/>
                 )}
             </div>
         )
@@ -61,4 +61,4 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps)(MoviesComponent);
+export default connect(mapStateToProps)(Home);
